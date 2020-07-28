@@ -1,5 +1,7 @@
 "use strict";
 
+const TASK_COUNT = 3;
+
 const createMenuTemplate = () => {
   return (
     `<section class="control__btn-wrap">
@@ -109,6 +111,13 @@ const createSortTemplate = () => {
 
 const createBoardTemplate = () => {
   return (
+    `<div class="board container">
+  </div>`
+  );
+};
+
+const createTaskListTemplate = () => {
+  return (
     `<div class="board__tasks">
   </div>`
   );
@@ -162,7 +171,7 @@ const createTaskTemplate = () => {
   );
 };
 
-const createTaskEditTemplate = () => {
+const createAddTaskTemplate = () => {
   return (
     `<article class="card card--edit card--black">
     <form class="card__form" method="get">
@@ -377,3 +386,18 @@ const siteMain = document.querySelector(`.main`);
 const siteMenu = siteMain.querySelector(`.main__control`);
 
 render(siteMenu, createMenuTemplate(), `beforeend`);
+render(siteMain, createFilterTemplate(), `beforeend`);
+render(siteMain, createBoardTemplate(), `beforeend`);
+
+const siteBoard = siteMain.querySelector(`.board`);
+render(siteBoard, createSortTemplate(), `beforeend`);
+render(siteBoard, createTaskListTemplate(), `beforeend`);
+
+const siteTasksList = siteMain.querySelector(`.board__tasks`);
+render(siteTasksList, createAddTaskTemplate(), `beforeend`);
+
+for (let i = 0; i < TASK_COUNT; i++) {
+  render(siteTasksList, createTaskTemplate(), `beforeend`);
+}
+
+render(siteBoard, createLoadMoreTemplate(), `beforeend`);
