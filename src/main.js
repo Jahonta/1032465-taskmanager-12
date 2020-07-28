@@ -372,3 +372,8 @@ const createLoadMoreTemplate = () => {
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
+
+const siteMain = document.querySelector(`.main`);
+const siteMenu = siteMain.querySelector(`.main__control`);
+
+render(siteMenu, createMenuTemplate(), `beforeend`);
